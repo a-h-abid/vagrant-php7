@@ -1,7 +1,7 @@
 class Php7
   def Php7.configure(config, settings)
     # Configure The Box
-    config.vm.box = "ncaro"
+    config.vm.box = "ncaro/php7-debian8-apache-nginx-mysql"
     config.vm.hostname = "php7"
 
     # Configure the network IPs
