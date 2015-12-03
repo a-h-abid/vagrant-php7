@@ -1,0 +1,20 @@
+---
+ip: "192.168.7.7"
+memory: 1024
+cpus: 2
+
+networking:
+    - public: true
+
+folders:
+    - map: .
+      to: /var/www/html
+      type: nfs
+
+# nginx: true
+
+# ports:
+#     - guest: 80
+#       host: 8000
+
+
