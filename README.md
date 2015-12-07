@@ -6,7 +6,7 @@ A provisioning script for the lightweight [PHP 7 Vagrant box](https://atlas.hash
 - PHP 7
 - PHP 5.6
 - PHP-FPM
-- MySQL 2.7 (root/root)
+- MySQL 5.7 (root/root)
 - Apache
 - Nginx
 - Memcached
