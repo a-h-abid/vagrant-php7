@@ -40,13 +40,28 @@ class Build
       end
     end
 
-    # If nginx is enabled, turn on PHP-FPM, if not run apache
-    config.vm.provision "shell" do |s|
+    # Turn on PHP-FPM for nginx, or enable the right module for Apache
+    if settings["php"] == 7
       if settings["nginx"] ||= false
-        s.inline = "sudo /etc/init.d/php-7.0.0-fpm start"
+          config.vm.provision "shell", inline: "sudo service php5-fpm stop && sudo /etc/init.d/php-7.0.0-fpm restart"
       else
-        s.inline = "sudo service nginx stop && sudo apachectl start"
+          config.vm.provision "shell", inline: "sudo a2dismod php5 && sudo a2enmod php7"
       end
+    else
+      if settings["nginx"] ||= false
+          config.vm.provision "shell", inline: "sudo /etc/init.d/php-7.0.0-fpm stop && sudo service php5-fpm restart"
+      else
+          config.vm.provision "shell", inline: "sudo a2dismod php7 && sudo a2enmod php5"
+      end
+    end
+
+    # Turn on the proper server
+    config.vm.provision "shell" do |s|
+        if settings["nginx"] ||= false
+          s.inline = "sudo apachectl stop && sudo service nginx restart"
+        else
+          s.inline = "sudo service nginx stop && sudo apachectl restart"
+        end
     end
 
   end
