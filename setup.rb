@@ -43,13 +43,13 @@ class Build
     # Turn on PHP-FPM for nginx, or enable the right module for Apache
     if settings["php"] == 7
       if settings["nginx"] ||= false
-          config.vm.provision "shell", inline: "sudo service php5-fpm stop && sudo /etc/init.d/php-7.0.0-fpm restart"
+          config.vm.provision "shell", inline: "sudo service php5-fpm stop && sudo service php7-fpm restart"
       else
           config.vm.provision "shell", inline: "sudo a2dismod php5 && sudo a2enmod php7"
       end
     else
       if settings["nginx"] ||= false
-          config.vm.provision "shell", inline: "sudo /etc/init.d/php-7.0.0-fpm stop && sudo service php5-fpm restart"
+          config.vm.provision "shell", inline: "sudo service php7-fpm stop && sudo service php5-fpm restart"
       else
           config.vm.provision "shell", inline: "sudo a2dismod php7 && sudo a2enmod php5"
       end
