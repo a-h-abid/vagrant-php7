@@ -1,4 +1,4 @@
-# Provisioning script for Vagrant (PHP 7, MySQL 2.7, Apache, Nginx)
+# Provisioning script for Vagrant (PHP 7, MySQL 5.7, Apache, Nginx)
 A provisioning script for the lightweight [PHP 7 Vagrant box](https://atlas.hashicorp.com/ncaro/boxes/php7-debian8-apache-nginx-mysql/).
 
 ## Installed with
